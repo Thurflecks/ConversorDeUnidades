@@ -3,13 +3,13 @@ import customtkinter
 
 root = customtkinter.CTk()
 root.title("Conversor de Unidades")
-root.geometry("700x500")
-root.minsize(700, 500)
-root.maxsize(700, 500)
+root.geometry("300x500")
+root.minsize(300, 500)
+root.maxsize(300, 500)
 root.iconbitmap("unidade.ico")
 
 opcoes = ["M", "KM", "L", "ML", "kg", "G"]
-opcoes2 = [""]
+opcoes2 = ["KM"]
 var = StringVar(root)
 var.set(opcoes[0])
 var1 = StringVar(root)
@@ -47,22 +47,24 @@ def converter(*args):
 var.trace('w', converter)
 
 def passar():
-    dados = int(valor.get())
-    
-    if var.get() == 'M':
-        return resultado.configure(text=(dados/1000,'Quilometros'))  
+    try:
+        dados = int(valor.get())   
+        if var.get() == 'M':
+            return resultado.configure(text=(dados/1000, var1.get()))    
+        elif var.get() == 'KM':
+            return resultado.configure(text=(dados*1000, var1.get()))  
+        elif var.get() == 'kg':
+            return resultado.configure(text=(dados*1000, var1.get()))  
+        elif var.get() == 'G':
+            return resultado.configure(text=(dados/1000, var1.get()))  
+        elif var.get() == 'L':
+            return resultado.configure(text=(dados*1000, var1.get()))  
+        elif var.get() == 'ML':
+            return resultado.configure(text=(dados/1000, var1.get() )) 
         
-    elif var.get() == 'KM':
-        return resultado.configure(text=(dados*1000,'metros'))  
-    elif var.get() == 'kg':
-        return resultado.configure(text=(dados*1000,'gramas'))  
-    elif var.get() == 'G':
-       return resultado.configure(text=(dados/1000,'quilos'))  
-    elif var.get() == 'L':
-        return resultado.configure(text=(dados*1000,'mililitros'))  
-    elif var.get() == 'ML':
-        return resultado.configure(text=(dados/1000,'litros'))  
-   
+    except:
+        return resultado.configure(text="Insira um valor inteiro")
+    
 ola = customtkinter.CTkLabel(root, text="Converta Unidades aqui: ")
 ola.place(relx=0.5, y=30, anchor="center")
 
