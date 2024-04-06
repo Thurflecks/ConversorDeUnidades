@@ -9,7 +9,7 @@ root.maxsize(300, 500)
 root.iconbitmap("unidade.ico")
 
 opcoes = ["M", "KM", "L", "ML", "kg", "G"]
-opcoes2 = ["KM"]
+opcoes2 = [""]
 var = StringVar(root)
 var.set(opcoes[0])
 var1 = StringVar(root)
